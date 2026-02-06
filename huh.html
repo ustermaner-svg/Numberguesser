@@ -10,7 +10,9 @@
 		const params = new URLSearchParams(window.location.search);
 		const one = params.getAll('guess'); 
 		const answers = one.toString();
+		console.log(`answers = ${answers}, one = ${one}, params = ${params}`);
 		const right = Math.floor(Math.random()*10)+1;
+		console.log(`right = ${right}`);
 		const p = document.getElementById("cool");
 		const r = document.getElementById("right");
 		const w = document.getElementById("wrong");
@@ -41,5 +43,6 @@
 	</body>
 
 	</html>
+
 
 
