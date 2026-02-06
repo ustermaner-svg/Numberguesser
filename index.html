@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Number Guessing</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Spicy+Rice" rel="stylesheet">
+  </head>
+  <body>
+    <section class="overlay">
+      <h1>Guess the right number!</h1>
+      <form action="huh.html" method="GET">
+        <label for="guess">Enter a number between 1-10:</label>
+        <br>
+        <!--Add the min and max attribute to the input-->
+        <input type="number" name="guess" id="guess" required min = "1" max = "10">
+        <br>
+        <input type="submit" id="submission" value="Submit">
+      </form>
+    </section>
+	<footer>
+	<h4 id = "first"></h4>
+	<h4 id = "second"></h4>
+	<h4 id = "third"></h4>
+	</footer>
+	<script>
+	const a = new URLSearchParams(window.location.search);
+	const First = a.get('input');
+	const Second = a.get('like');
+	const Third = a.get('bigtext');
+	const Fplace = document.getElementById("first");
+	const Splace = document.getElementById("second");
+	const Tplace = document.getElementById("third");
+	const Def1 = "How many tries?";
+	const Def2 = "Leave a review!!";
+	const Ftrue = ((First) && (First != Def1))?true:false;
+	const Strue = (Second)?true:false;
+	const Ttrue = ((Third)&&(Third != Def2))?true:false;
+	const Answer = {
+		_top: "",
+		_middle: "",
+		_bottom: "",
+		get top(){return this._top;},
+		get bottom(){ return this._bottom;},
+		get middle(){return this._middle;},
+		set top(NewT){
+		(Ftrue)?this._top = `It took you ${NewT}!`:this._top = `No review recieved.`;
+		},
+		set middle(NewM){
+		(Strue)?this._middle = `You Gave us a \'${NewM}\' review!!`:this._middle = `No review recieved.`;
+		},
+		set bottom(NewB){
+		(Ttrue)?this._bottom = `You Told us ${NewB}!`:this._bottom = `No review recieved.`;
+		},
+	}
+	Answer.top = First;
+	Answer.middle = Second;
+	Answer.bottom = Third;
+	Fplace.textContent = Answer.top;
+	Splace.textContent = Answer.middle;
+	Tplace.textContent = Answer.bottom;
+	</script>
+  </body>
+</html>

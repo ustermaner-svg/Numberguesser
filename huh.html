@@ -1,0 +1,39 @@
+	<!DOCTYPE html>
+	<html>
+	<head><title>huh</title></head>
+	<body>
+	<header id = "cool" style = "font-size: 32px">
+	</header>
+	<a id = "right" href = "next.html"></a>
+	<a id = "wrong" href = "index.html"></a>
+	<script>
+		const params = new URLSearchParams(window.location.search);
+		const one = params.getAll('guess'); 
+		const answers = one.toString();
+		const right = Math.floor(Math.random()*10)+1;
+		const p = document.getElementById("cool");
+		const r = document.getElementById("right");
+		const w = document.getElementById("wrong");
+		const result = {
+			_right: right.toString(),
+			_final: "",
+			set finals(param){
+			if(param === this._right){
+				this._final = `you guessed right! the answer was ${param}`;
+			}
+			else
+				this._final = `you guessed wrong! (${param}), the answer was ${this._right}!!`;
+			},
+			get final() {
+			return this._final;
+			},
+			checktrue(){
+			   return (answers === this._right);
+			},
+		};
+		result.finals = answers;
+		p.textContent = result.final;
+		result.checktrue()?r.textContent = 'you were right!! (click to proceed)': w.textContent = 'you were wrong! (click to try again)';
+	</script>
+	</body>
+	</html>
